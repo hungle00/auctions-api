@@ -1,0 +1,36 @@
+name: Auction Api
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        ports: ['5432:5432']
+        env:
+          POSTGRES_USER: auction_api
+          POSTGRES_PASSWORD: rails_dev
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2'
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.6
+          bundler-cache: true
+      - name: Install dependencies
+        run: |
+          bundle install --jobs 4 --retry 3
+          yarn
+      - name: Setup db and test
+        env:
+          RAILS_ENV: test
+          POSTGRES_PASSWORD: rails_dev
+        run: |
+          bundle exec rails db:setup
+          bundle exec rspec
