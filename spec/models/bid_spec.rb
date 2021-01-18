@@ -9,4 +9,5 @@ RSpec.describe Bid, type: :model do
   describe "Validations" do
     it { should validate_presence_of(:bidder) }
   end
+
 end
