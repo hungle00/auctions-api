@@ -4,17 +4,18 @@ class AuctionsController < ApplicationController
   # GET /auctions
   def index
     @auctions = Auction.all
-    render json: @auctions
+    json_response(@auctions)
   end
 
   # POST /auctions
   def create
     @auction = Todo.create!(todo_params)
+    json_response(@auction, :created)
   end
 
   # GET /auctions/:id
   def show
-    @auction
+    json_response(@auction)
   end
 
   # PUT /auctions/:id
