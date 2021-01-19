@@ -6,8 +6,8 @@ RSpec.describe Activity, type: :model do
   end
 
   describe "create activity" do
-    seller = User.create(:email => 'steve@email.com', :password => 'steve00')			  
-    bidder = User.create(:email => 'steve@email.com', :password => 'steve00')
+    seller = User.create(:email => 'steve@email.com', :name => 'steve', :password => 'steve00')			  
+    bidder = User.create(:email => 'steve@email.com', :name => 'steve', :password => 'steve00')
   
     auction = Auction.create(title: 'Hello World', description: 'Hello World',
            start_date: DateTime.now, end_date: DateTime.now + 1.week,
