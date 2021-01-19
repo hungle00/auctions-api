@@ -1,24 +1,18 @@
-# README
+# AUCTIONS-API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Test Api with httpie  
 
-Things you may want to cover:
+* Signup  
+http :3000/signup name=steve email=steve@email.com password=foobar password_confirmation=foobar    
+=>  "auth_token": "token"  
 
-* Ruby version
+* Login  
+http :3000/auth/login email=steve@email.com password=foobar  
+=>  "auth_token": "token"  
 
-* System dependencies
+* Access url path  
+http :3000/<url_path> Authorization:token  
 
-* Configuration
+### Dependecies
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### API url

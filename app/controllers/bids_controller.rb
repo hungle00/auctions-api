@@ -2,29 +2,29 @@ class BidsController < ApplicationController
   before_action :set_auction
   before_action :set_auction_bid, only: [:show, :update, :destroy]
 
-  # GET /todos/:todo_id/items
+  # GET /auctions/:auction_id/bids
   def index
     json_response(@auction.bids)
   end
 
-  # GET /todos/:todo_id/items/:id
+  #GET /auctions/:auction_id/bids/:id
   def show
     json_response(@auction)
   end
 
-  # POST /todos/:todo_id/items
+  # POST /auctions/:auction_id/bids
   def create
     @auction.bids.create!(bid_params)
     json_response(@auction, :created)
   end
 
-  # PUT /todos/:todo_id/items/:id
+  # PUT /auctions/:auction_id/bids/:id
   def update
     @bid.update(bid_params)
     head :no_content
   end
 
-  # DELETE /todos/:todo_id/items/:id
+  # DELETE /auctions/:auction_id/bids/:id
   def destroy
     @bid.destroy
     head :no_content
