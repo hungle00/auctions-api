@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_19_042258) do
+ActiveRecord::Schema.define(version: 2021_01_24_155027) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(version: 2021_01_19_042258) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "subject_type"
+    t.integer "subject_id"
+    t.index ["subject_type", "subject_id"], name: "index_activities_on_subject"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
@@ -40,6 +43,16 @@ ActiveRecord::Schema.define(version: 2021_01_19_042258) do
     t.index ["auction_id"], name: "index_bids_on_auction_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "body"
+    t.integer "auctions_id", null: false
+    t.integer "users_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["auctions_id"], name: "index_comments_on_auctions_id"
+    t.index ["users_id"], name: "index_comments_on_users_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -50,4 +63,6 @@ ActiveRecord::Schema.define(version: 2021_01_19_042258) do
 
   add_foreign_key "activities", "users"
   add_foreign_key "bids", "auctions"
+  add_foreign_key "comments", "auctions", column: "auctions_id"
+  add_foreign_key "comments", "users", column: "users_id"
 end

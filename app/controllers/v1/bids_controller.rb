@@ -2,6 +2,8 @@ module V1
   class BidsController < ApplicationController
     before_action :set_auction
     before_action :set_auction_bid, only: [:show, :update, :destroy]
+
+    skip_before_action :authorize_request, only: :create
   
     # GET /auctions/:auction_id/bids
     def index
