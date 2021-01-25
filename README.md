@@ -13,6 +13,16 @@ http :3000/auth/login email=steve@email.com password=foobar
 * Access url path  
 http :3000/<url_path> Authorization:token  
 
-### Dependecies
+### API URL
 
-### API url
+### ActiveRecord Note
+
+* Add Polymorphic Associations
+```
+    rails g migration AddSubjectToActivities subject:references{polymorphic}
+
+    class Activity < ApplicationRecord
+      belongs_to :subject, :polymorphic => true
+    end
+```
+

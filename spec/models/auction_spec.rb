@@ -41,5 +41,6 @@ RSpec.describe Auction, type: :model do
   describe "Associations" do
     it { should belong_to(:user).without_validating_presence }
     it { should have_many(:bids) }
+    it { should have_many(:comments) }
   end
 end

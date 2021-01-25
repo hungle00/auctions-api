@@ -45,12 +45,12 @@ ActiveRecord::Schema.define(version: 2021_01_24_155027) do
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
-    t.integer "auctions_id", null: false
-    t.integer "users_id", null: false
+    t.integer "auction_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["auctions_id"], name: "index_comments_on_auctions_id"
-    t.index ["users_id"], name: "index_comments_on_users_id"
+    t.index ["auction_id"], name: "index_comments_on_auction_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,6 +63,6 @@ ActiveRecord::Schema.define(version: 2021_01_24_155027) do
 
   add_foreign_key "activities", "users"
   add_foreign_key "bids", "auctions"
-  add_foreign_key "comments", "auctions", column: "auctions_id"
-  add_foreign_key "comments", "users", column: "users_id"
+  add_foreign_key "comments", "auctions"
+  add_foreign_key "comments", "users"
 end
